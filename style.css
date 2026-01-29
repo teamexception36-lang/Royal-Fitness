@@ -1,0 +1,338 @@
+/* Custom properties for easy color changes */
+:root {
+    --primary-color: #4CAF50; /* A fresh green */
+    --secondary-color: #388E3C; /* Darker green for accents */
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --body-bg-start: #f0f2f5;
+    --body-bg-end: #e3e6e8;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Base Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* Gradient Background */
+    background: linear-gradient(135deg, var(--body-bg-start) 0%, var(--body-bg-end) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Wrapper for Centering */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* The Main Card Container */
+.login-card {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px var(--shadow-color); /* Soft, pronounced shadow */
+    width: 100%;
+    max-width: 400px; /* Constrain the width */
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.login-card:hover {
+    transform: translateY(-5px); /* Subtle lift on hover */
+}
+
+/* Typography */
+.card-title {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+/* Form Layout */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between form elements */
+}
+
+/* Input Group Styling (Label and Input) */
+.input-group {
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 0.9em;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box; /* Include padding and border in element's total width/height */
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"], 
+input[type="email"],
+input[type="password"] {
+    width: 100%; /* This is the key property that was missing for text */
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* The Login Button */
+.login-button {
+    background: var(--primary-color);
+    color: white;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.login-button:hover {
+    background: var(--secondary-color);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+.login-button:active {
+    transform: scale(0.98); /* Press down effect */
+}
+
+/* Register Link Styling */
+.register-link {
+    margin-top: 25px;
+    font-size: 0.95em;
+    color: #666;
+}
+
+.register-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.register-link a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+
+/* --- DASHBOARD STYLING --- */
+
+/* Full page wrapper - keeps the body background */
+.dashboard-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header/Navigation Bar */
+.dashboard-header {
+    background: var(--primary-color); /* The signature green */
+    color: white;
+    padding: 15px 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-title {
+    font-weight: 600;
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.header-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.header-link:hover {
+    background-color: var(--secondary-color); /* Darker green on hover */
+    border-color: var(--secondary-color);
+}
+
+/* Main Content Area */
+.dashboard-main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    width: 100%;
+    flex-grow: 1;
+}
+
+/* Welcome Card */
+.welcome-card {
+    background: var(--card-bg); /* White background */
+    border-left: 5px solid var(--primary-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+}
+
+.welcome-card h2 {
+    color: var(--primary-color);
+    margin-top: 0;
+    font-weight: 700;
+}
+
+.welcome-card p {
+    color: #666;
+}
+
+/* Action Grid/Cards */
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.action-card {
+    display: block; /* Make the whole card clickable */
+    text-decoration: none;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.action-card:hover {
+    transform: translateY(-5px); /* Lift effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.action-card .icon {
+    font-size: 2.5em;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.action-card h3 {
+    color: var(--text-color);
+    margin-top: 0;
+    font-weight: 600;
+}
+
+.action-card p {
+    color: #888;
+    font-size: 0.9em;
+}
+
+/* Primary Action Styling */
+.primary-action {
+    border-bottom: 5px solid var(--primary-color);
+}
+
+/* Coming Soon Styling */
+.coming-soon {
+    opacity: 0.6;
+    cursor: not-allowed;
+    border-bottom: 5px solid #ccc;
+}
+
+.coming-soon:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* No lift on hover */
+}
+
+/* --- PROFILE PAGE STYLING ADDITIONS --- */
+
+/* Ensures the profile card is centered and slightly wider for better info display */
+.profile-card {
+    max-width: 450px; 
+    padding: 50px 40px;
+}
+
+.profile-details {
+    /* Aligns text for a list-like appearance */
+    text-align: left; 
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.detail-group {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    /* Uses a dashed line for subtle separation between details */
+    border-bottom: 1px dashed #eee; 
+}
+
+.detail-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    /* Neutral color for the label */
+    color: #666; 
+    font-size: 0.9em;
+}
+
+.detail-value {
+    /* Makes the actual data stand out */
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--text-color); /* Uses the main dark text color */
+    margin: 0;
+    padding: 5px 0;
+    word-wrap: break-word; 
+}
+
+/* Styling the Logout Button */
+.logout-button {
+    /* Inherits general button styling from .login-button, but changes color for distinction */
+    background-color: #f44336; /* A clear, standard red for logouts */
+    border: none; /* Override any button border inherited from other rules */
+    margin-top: 20px;
+    width: 100%; /* Make it full width like the input fields */
+    text-decoration: none; /* Ensure the anchor tag looks like a button */
+    display: block; /* Ensure the anchor tag behaves like a block element */
+    box-sizing: border-box;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f;
+    box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);
+}

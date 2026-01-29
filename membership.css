@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: "inter", sans-serif;
+}
+
+:root{
+    --dark-color: #15101d;
+    --light-color: #fdfffc;
+    --accent-color: #ff6600;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  color: var(--dark-color);
+  background: #f7f7f7;        
+}
+
+.container-fluid {
+  width: 100%;
+  margin-inline: auto;
+  padding: 0%!important; 
+}
+.btn.btn-nav{
+    background: linear-gradient(135deg, #6559c5 7%, #2e58ff 60%);
+    color: transparent;
+    color: #e6f5f2;
+    padding: 8px 15px;
+    border: 2px solid #224cf3;
+    border-radius: 5px;
+    display: inline-block;
+    font-weight: 500;
+    transition: all 300ms ease;
+}
+
+.btn.btn-nav:hover{
+    color: #000000;
+}
+.btn.btn-custom{
+    background-color: var(--accent-color);
+    color: var(--light-color);
+    padding: 8px 32px;
+    border: 2px solid var(--accent-color);
+    display: inline-block;
+    font-weight: 500;
+    transition: all 300ms ease;
+}
+
+.btn.btn-custom:hover{
+    background-color: #f98124;
+    color: #000000;
+}
+
+a{
+    text-decoration: none!important;
+}
+
+/* Navbar */
+
+    nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 1000;
+    }
+
+    .logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 20px;
+    }
+    
+    .logo-img {
+    height: 50px;
+    width: max-content;
+    }
+
+    .logo a{
+        color: var(--dark-color);
+        font-weight: bold;
+        font-size: larger;
+    }
+    .menu-items {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    }
+
+    .menu-items a{
+        font-size: 1.05rem;
+    color: var(--dark-color);
+    transition: 0.3s;
+    }
+
+    .menu-items a:hover,
+    .menu-items a.active {
+    color: var(--accent-color);
+    }
+
+/* Navbar Ennnnd*/
+
+/* Hero Image Section */
+.membership-hero img {
+  width: 100%;
+  height: 550px;          
+  max-height: 550px;   
+  object-fit: cover;     
+  display: block;
+}
+
+.membership-hero {
+  margin-top: 82px; /* image below navbar */
+}
+/* Membership */
+.membership {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.section-title {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: var(--accent-color);
+}
+
+.section-subtitle {
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+
+.plan-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.plan-card:hover {
+  transform: translateY(-8px);
+}
+
+.plan-card h2 {
+  margin-bottom: 10px;
+  color: #ff6600;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.note {
+  font-size: 14px;
+  color: #444;
+}
+
+
+/* plans-grid2 */
+.plans-grid2 {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 60px 0px;
+} 
+.highlight {
+  border: 2px solid #ff6600;
+  /* height: 250px; */
+}
+/* Services */
+.services {
+  padding: 60px 20px;
+  background: #fff;
+}
+
+.services h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.services-list {
+  max-width: 700px;
+  margin: auto;
+  padding-left: 0;
+  list-style: none;
+  font-size: 16px;
+}
+
+.services-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* Address */
+.address {
+  text-align: center;
+  padding: 40px 20px;
+  background: #1a1423;
+  color: #fff;
+}
+
+.address h2 {
+  margin-bottom: 10px;
+}
+
+.tryfree a{
+  color: #224cf3;
+   transition: all 300ms ease;
+
+}
+
+.tryfree a:hover{
+  font-size: 30px;
+  
+}
