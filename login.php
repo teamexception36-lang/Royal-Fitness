@@ -176,12 +176,6 @@ if (isset($_POST['login'])) {
         <h1 class="card-title">Welcome Back</h1>
         <p class="card-subtitle">Please enter your details to sign in.</p>
 
-        <?php if($error != ""): ?>
-            <div class="error-msg">
-                <i class="fas fa-exclamation-circle"></i> <?php echo $error; ?>
-            </div>
-        <?php endif; ?>
-
         <form method="POST" action="">
             <div class="input-group">
                 <label for="email">Email Address</label>

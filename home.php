@@ -32,7 +32,7 @@ session_start();
 
         /* Navbar Customization */
         .navbar {
-            background: rgba(0, 0, 0, 0.8) !important;
+            background: rgba(255, 255, 255, 0.8) !important;
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 215, 0, 0.2);
             padding: 15px 0;
@@ -47,7 +47,7 @@ session_start();
         }
 
         .nav-link {
-            color: white !important;
+            color: black !important;
             font-weight: 500;
             margin: 0 10px;
             transition: var(--transition);

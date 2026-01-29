@@ -31,12 +31,12 @@ session_start();
 
         /* Navbar (Consistent) */
         .navbar {
-            background: rgba(0, 0, 0, 0.9) !important;
+            background: rgba(255, 255, 255, 0.9) !important;
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(212, 175, 55, 0.3);
         }
         .navbar-brand { font-weight: 700; color: var(--primary-gold) !important; }
-        .nav-link { color: white !important; margin: 0 10px; }
+        .nav-link { color: black !important; margin: 0 10px; }
         .btn-nav { background: var(--primary-gold); color: black !important; font-weight: 600; border-radius: 20px; padding: 5px 20px; }
 
         /* Contact Header */
