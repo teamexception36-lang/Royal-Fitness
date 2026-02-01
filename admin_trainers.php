@@ -2,7 +2,13 @@
 session_start();
 include 'config.php';
 // Security Check
-if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') { header("Location: login.php"); exit(); }
+$authorized = ['admin', 'owner', 'manager'];
+if (!isset($_SESSION['username']) || !in_array($_SESSION['role'], $authorized))
+{
+     header("Location: login.php"); exit();
+}
+        
+ 
 
 $trainers = mysqli_query($conn, "SELECT * FROM trainers");
 ?>

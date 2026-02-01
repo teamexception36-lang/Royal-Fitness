@@ -3,38 +3,39 @@ include 'config.php';
 session_start();
 
 if (isset($_POST['login'])) {
+    // 1. Sanitize and Hash
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = md5($_POST['password']); // Using md5 to match your existing system
+    $password = md5($_POST['password']); 
 
+    // 2. Query the Database
     $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
 
     if ($row) {
-        // Set Essential Sessions
+        // 3. Set Essential Session Variables
         $_SESSION['user_id']  = $row['id'];
         $_SESSION['username'] = $row['username'];
         $_SESSION['email']    = $row['email'];
         $_SESSION['role']     = $row['role'];
 
-        // Role-Based Redirection Logic
-        switch($row['role']) {
-            case 'owner':
-            case 'manager':
-                header("Location: admin_dashboard.php");
-                break;
-            case 'trainer':
-                header("Location: trainer_dashboard.php");
-                break;
-            case 'user':
-                header("Location: dashboard.php");
-                break;
-            default:
-                header("Location: home.php");
+        // 4. Role-Based Redirection Logic (Pro Level)
+        $adminRoles = ['admin', 'owner', 'manager'];
+
+        if (in_array($row['role'], $adminRoles)) {
+            // High Authority Access
+            header("Location: admin_dashboard.php");
+        } else if ($row['role'] == 'trainer') {
+            // Trainer Access
+            header("Location: trainer_dashboard.php");
+        } else {
+            // Regular Gym Member Access
+            header("Location: dashboard.php");
         }
-        exit();
+        exit(); // Always exit after a header redirect
     } else {
-        echo "<script>alert('Invalid Email or Password');</script>";
+        // Login Failed
+        echo "<script>alert('Invalid Email or Password. Please try again.');</script>";
     }
 }
 ?>
@@ -47,7 +48,7 @@ if (isset($_POST['login'])) {
     <title>Login | Royal Fitness</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- External CSS -->
     <link rel="stylesheet" href="login.css">
@@ -57,7 +58,7 @@ if (isset($_POST['login'])) {
     <div class="login-container">
         <div class="login-card">
             <div class="brand-section">
-                <img src="images/Royal_fit_logo.png" alt="Royal Fit Logo" class="login-logo">
+                <img src="images/Royal_fit_logo.png" alt="Royal Fit Logo" class="login-logo" onerror="this.style.display='none'">
                 <h1>ROYAL <span>FITNESS</span></h1>
                 <p>Welcome Back, Elite Member</p>
             </div>

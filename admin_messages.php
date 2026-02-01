@@ -3,10 +3,11 @@ session_start();
 include 'config.php';
 
 // Security: Admin Only
-if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
-    header("Location: login.php");
-    exit();
+$authorized = ['admin', 'owner', 'manager'];
+if (!isset($_SESSION['username']) || !in_array($_SESSION['role'], $authorized)) {
+    header("Location: login.php"); exit();
 }
+
 
 // ADVANCED SQL: LEFT JOIN to identify leads vs members
 $sql = "SELECT m.*, u.active_plan, u.id as user_id 

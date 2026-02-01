@@ -149,7 +149,7 @@ $member_id = "RF-" . str_pad($user['id'], 4, '0', STR_PAD_LEFT);
                                 <p><?php echo ucfirst($user['role']); ?></p>
                             </div>
                         </div>
-                        <a href="edit_profile.php" class="btn-edit">Edit Profile Setting</a>
+                        <a href="profile.php" class="btn-edit">Edit Profile Setting</a>
                     </div>
                 </div>
 
