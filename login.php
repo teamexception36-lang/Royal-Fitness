@@ -3,38 +3,30 @@ include 'config.php';
 session_start();
 
 if (isset($_POST['login'])) {
-    // 1. Sanitize and Hash
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = md5($_POST['password']); 
 
-    // 2. Query the Database
     $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
 
     if ($row) {
-        // 3. Set Essential Session Variables
         $_SESSION['user_id']  = $row['id'];
         $_SESSION['username'] = $row['username'];
         $_SESSION['email']    = $row['email'];
         $_SESSION['role']     = $row['role'];
 
-        // 4. Role-Based Redirection Logic (Pro Level)
         $adminRoles = ['admin', 'owner', 'manager'];
 
         if (in_array($row['role'], $adminRoles)) {
-            // High Authority Access
             header("Location: admin_dashboard.php");
         } else if ($row['role'] == 'trainer') {
-            // Trainer Access
             header("Location: trainer_dashboard.php");
         } else {
-            // Regular Gym Member Access
             header("Location: dashboard.php");
         }
-        exit(); // Always exit after a header redirect
+        exit(); 
     } else {
-        // Login Failed
         echo "<script>alert('Invalid Email or Password. Please try again.');</script>";
     }
 }
@@ -46,11 +38,8 @@ if (isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Royal Fitness</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- External CSS -->
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
@@ -58,7 +47,7 @@ if (isset($_POST['login'])) {
     <div class="login-container">
         <div class="login-card">
             <div class="brand-section">
-                <img src="images/Royal_fit_logo.png" alt="Royal Fit Logo" class="login-logo" onerror="this.style.display='none'">
+                <img src="images/Royal_fit_logo.png" alt="Logo" class="login-logo" onerror="this.style.display='none'">
                 <h1>ROYAL <span>FITNESS</span></h1>
                 <p>Welcome Back, Elite Member</p>
             </div>
@@ -71,7 +60,10 @@ if (isset($_POST['login'])) {
                 
                 <div class="input-group">
                     <label><i class="fas fa-lock"></i> Password</label>
-                    <input type="password" name="password" placeholder="••••••••" required>
+                    <div class="password-field-container">
+                        <input type="password" name="password" id="loginPass" placeholder="••••••••" required>
+                        <i class="fas fa-eye toggle-password" id="toggleIcon" onclick="togglePasswordVisibility('loginPass', 'toggleIcon')"></i>
+                    </div>
                 </div>
 
                 <button type="submit" name="login" class="btn-login">
@@ -86,5 +78,19 @@ if (isset($_POST['login'])) {
         </div>
     </div>
 
+    <script>
+    function togglePasswordVisibility(inputId, iconId) {
+        const passwordInput = document.getElementById(inputId);
+        const toggleIcon = document.getElementById(iconId);
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
+        }
+    }
+    </script>
 </body>
 </html>

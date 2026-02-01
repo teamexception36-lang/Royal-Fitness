@@ -13,35 +13,27 @@ if (isset($_POST['register'])) {
     $confirm_password = $_POST['confirm_password'];
     $role = mysqli_real_escape_string($conn, $_POST['role']);
 
-    // --- Standard Validation Rules ---
-    
-    // 1. Password Strength Regex
     $pwd_regex = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
-    
-    // 2. Phone Number Regex (10 Digits)
     $phone_regex = "/^[0-9]{10}$/";
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Invalid email format.";
     } elseif (!preg_match($phone_regex, $phone)) {
-        $error = "Phone number must be exactly 10 digits.";
+        $error = "Phone must be 10 digits.";
     } elseif (!preg_match($pwd_regex, $password)) {
-        $error = "Password must be 8+ chars with Uppercase, Lowercase, Number & Symbol.";
+        $error = "Password must be 8+ chars with Upper, Lower, Number & Symbol.";
     } elseif ($password !== $confirm_password) {
         $error = "Passwords do not match!";
     } else {
         $hashed_password = md5($password); 
-
-        // Check if email or phone already exists
         $check = mysqli_query($conn, "SELECT * FROM users WHERE email='$email' OR phone='$phone'");
         if (mysqli_num_rows($check) > 0) {
-            $error = "Email or Phone Number is already registered.";
+            $error = "Email or Phone already exists.";
         } else {
             $sql = "INSERT INTO users (username, email, phone, password, role, active_plan, bmi_score) 
                     VALUES ('$username', '$email', '$phone', '$hashed_password', '$role', 'No Active Plan', 0)";
-            
             if (mysqli_query($conn, $sql)) {
-                $success = "Registration Successful! Redirecting to login...";
+                $success = "Registration Successful! Redirecting...";
                 header("refresh:3;url=login.php");
             } else {
                 $error = "System Error: " . mysqli_error($conn);
@@ -71,13 +63,8 @@ if (isset($_POST['register'])) {
                 <p>Join the High-Performance Community</p>
             </div>
 
-            <?php if($error): ?>
-                <div class="alert error"><i class="fas fa-shield-alt"></i> <?php echo $error; ?></div>
-            <?php endif; ?>
-            
-            <?php if($success): ?>
-                <div class="alert success"><i class="fas fa-check-double"></i> <?php echo $success; ?></div>
-            <?php endif; ?>
+            <?php if($error): ?><div class="alert error"><?php echo $error; ?></div><?php endif; ?>
+            <?php if($success): ?><div class="alert success"><?php echo $success; ?></div><?php endif; ?>
 
             <form method="POST" action="" class="register-form">
                 <div class="input-group">
@@ -87,17 +74,17 @@ if (isset($_POST['register'])) {
 
                 <div class="form-row">
                     <div class="input-group">
-                        <label><i class="fas fa-envelope"></i> Email Address</label>
+                        <label><i class="fas fa-envelope"></i> Email</label>
                         <input type="email" name="email" placeholder="name@email.com" required>
                     </div>
                     <div class="input-group">
-                        <label><i class="fas fa-phone"></i> Mobile Number</label>
-                        <input type="text" name="phone" placeholder="10 Digit Number" maxlength="10" required>
+                        <label><i class="fas fa-phone"></i> Mobile</label>
+                        <input type="text" name="phone" placeholder="10 Digits" maxlength="10" required>
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label><i class="fas fa-id-badge"></i> Account Authority</label>
+                    <label><i class="fas fa-id-badge"></i> Role</label>
                     <select name="role" class="form-select-custom" required>
                         <option value="user">Gym Member</option>
                         <option value="trainer">Official Trainer</option>
@@ -109,28 +96,41 @@ if (isset($_POST['register'])) {
                 <div class="form-row">
                     <div class="input-group">
                         <label><i class="fas fa-lock"></i> Password</label>
-                        <input type="password" name="password" placeholder="8+ Strong Chars" required>
+                        <div class="password-field-container">
+                            <input type="password" name="password" id="regPass" placeholder="8+ Chars" required>
+                            <i class="fas fa-eye toggle-password" id="eye1" onclick="togglePasswordVisibility('regPass', 'eye1')"></i>
+                        </div>
                     </div>
                     <div class="input-group">
                         <label><i class="fas fa-check-circle"></i> Confirm</label>
-                        <input type="password" name="confirm_password" placeholder="Repeat Password" required>
+                        <div class="password-field-container">
+                            <input type="password" name="confirm_password" id="confirmPass" placeholder="Repeat" required>
+                            <i class="fas fa-eye toggle-password" id="eye2" onclick="togglePasswordVisibility('confirmPass', 'eye2')"></i>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Password hint for user guidance -->
-                <p class="pwd-hint">Password must contain Uppercase, Lowercase, Number & Symbol.</p>
-
-                <button type="submit" name="register" class="btn-royal">
-                    Secure Registration <i class="fas fa-arrow-right ms-2"></i>
-                </button>
+                <button type="submit" name="register" class="btn-royal">Register Now</button>
             </form>
-
             <div class="card-footer">
-                <p>Already registered? <a href="login.php">Login to Dashboard</a></p>
-                <a href="home.php" class="back-home">← Back to Homepage</a>
+                <p>Already registered? <a href="login.php">Login</a></p>
             </div>
         </div>
     </div>
 
+    <script>
+    function togglePasswordVisibility(inputId, iconId) {
+        const passwordInput = document.getElementById(inputId);
+        const toggleIcon = document.getElementById(iconId);
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
+        }
+    }
+    </script>
 </body>
 </html>

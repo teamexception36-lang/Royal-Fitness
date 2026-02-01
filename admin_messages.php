@@ -71,58 +71,54 @@ $new_leads = $total_inquiries - $member_inquiries;
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if ($total_inquiries > 0): ?>
-                            <?php while($row = mysqli_fetch_assoc($result)): ?>
-                            <tr>
-                                <td>
-                                    <div class="sender-box">
-                                        <div class="name"><?php echo $row['name']; ?></div>
-                                        <div class="sub"><?php echo $row['email']; ?></div>
-                                        <div class="sub"><?php echo $row['phone']; ?></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="msg-text">
-                                        <?php echo nl2br(htmlspecialchars($row['message'])); ?>
-                                    </div>
-                                </td>
-                                <td>
-                                    <?php if($row['user_id']): ?>
-                                        <span class="badge-pro member">
-                                            <i class="fas fa-crown"></i> Member (<?php echo $row['active_plan']; ?>)
-                                        </span>
-                                    <?php else: ?>
-                                        <span class="badge-pro lead">
-                                            <i class="fas fa-bolt"></i> New Lead
-                                        </span>
-                                    <?php endif; ?>
-                                </td>
-                                <td class="small text-muted">
-                                    <?php echo date('d M', strtotime($row['created_at'])); ?><br>
-                                    <?php echo date('h:i A', strtotime($row['created_at'])); ?>
-                                </td>
-                                <td>
-                                    <div class="d-flex justify-content-center gap-2">
-                                        <!-- Instant Email -->
-                                        <a href="mailto:<?php echo $row['email']; ?>" class="action-btn email" title="Reply via Email">
-                                            <i class="fas fa-envelope"></i>
-                                        </a>
-                                        <!-- Instant WhatsApp -->
-                                        <a href="https://wa.me/<?php echo $row['phone']; ?>" target="_blank" class="action-btn whatsapp" title="Reply via WhatsApp">
-                                            <i class="fab fa-whatsapp"></i>
-                                        </a>
-                                        <!-- Delete Record -->
-                                        <a href="delete_msg.php?id=<?php echo $row['id']; ?>" class="action-btn delete" onclick="return confirm('Archive this inquiry?')">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <?php endwhile; ?>
-                        <?php else: ?>
-                            <tr><td colspan="5" class="text-center py-5 text-muted">No inquiries found in the database.</td></tr>
-                        <?php endif; ?>
-                    </tbody>
+    <?php while($row = mysqli_fetch_assoc($result)): ?>
+    <tr>
+        <td>
+            <div class="fw-bold text-gold"><?php echo $row['name']; ?></div>
+            <div class="small text-muted"><?php echo $row['email']; ?></div>
+            <!-- Displaying phone number for admin reference -->
+            <div class="small text-muted"><i class="fas fa-phone-alt fa-xs"></i> <?php echo $row['phone']; ?></div>
+        </td>
+        <td><div class="msg-text"><?php echo htmlspecialchars($row['message']); ?></div></td>
+        <td>
+            <?php if($row['user_id']): ?>
+                <span class="badge-pro member">Member</span>
+            <?php else: ?>
+                <span class="badge-pro lead">New Lead</span>
+            <?php endif; ?>
+        </td>
+        <td>
+            <div class="d-flex gap-2">
+                <!-- EMAIL ACTION -->
+                <a href="mailto:<?php echo $row['email']; ?>" class="action-btn email" title="Send Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+
+                <!-- WHATSAPP ACTION -->
+                <?php 
+                    // Clean the phone number (remove spaces, dashes, etc.)
+                    $clean_phone = preg_replace('/[^0-9]/', '', $row['phone']);
+                    // Add 91 prefix if not present (assuming India)
+                    if(strlen($clean_phone) == 10) { $clean_phone = "91".$clean_phone; }
+                ?>
+                <a href="https://wa.me/<?php echo $clean_phone; ?>?text=Hello <?php echo urlencode($row['name']); ?>, this is Royal Fitness Admin regarding your inquiry." 
+                   target="_blank" 
+                   class="action-btn whatsapp" 
+                   title="Chat on WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+
+                <!-- DELETE ACTION -->
+                <a href="admin_messages.php?delete_msg=<?php echo $row['id']; ?>" 
+                   class="action-btn delete" 
+                   onclick="return confirm('Delete this message?')">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
+        </td>
+    </tr>
+    <?php endwhile; ?>
+</tbody>
                 </table>
             </div>
         </div>

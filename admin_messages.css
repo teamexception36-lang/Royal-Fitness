@@ -75,3 +75,56 @@
 }
 
 .action-btn.email:hover { background: var(--gold); color: black; border-color: var(--gold); }
+/* --- Action Buttons --- */
+.action-btn {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    font-size: 1.1rem;
+}
+
+/* Specific WhatsApp Button Styling */
+.action-btn.whatsapp {
+    background: rgba(37, 211, 102, 0.1); /* Subtle Green background */
+    color: #25d366;
+    border: 1px solid rgba(37, 211, 102, 0.3);
+}
+
+.action-btn.whatsapp:hover {
+    background: #25d366; /* Solid Green on hover */
+    color: #fff;
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.5); /* Green Shine Glow */
+    transform: translateY(-3px);
+}
+
+/* Existing Email and Delete button tweaks for consistency */
+.action-btn.email {
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--primary-gold);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.action-btn.email:hover {
+    background: var(--primary-gold);
+    color: #000;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    transform: translateY(-3px);
+}
+
+.action-btn.delete {
+    background: rgba(255, 77, 77, 0.1);
+    color: #ff4d4d;
+    border: 1px solid rgba(255, 77, 77, 0.3);
+}
+
+.action-btn.delete:hover {
+    background: #ff4d4d;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 77, 77, 0.5);
+    transform: translateY(-3px);
+}
