@@ -35,7 +35,7 @@ session_start();
                     <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
                     <li class="nav-item ms-lg-3">
                         <?php if(isset($_SESSION['username'])): ?>
-                            <a href="profile2.php" class="btn btn-nav">👋 <?php echo htmlspecialchars($_SESSION['username']); ?></a>
+                            <a href="dashboard.php" class="btn btn-nav">👋 <?php echo htmlspecialchars($_SESSION['username']); ?></a>
                         <?php else: ?>
                             <a href="login.php" class="btn btn-nav">Login</a>
                         <?php endif; ?>
