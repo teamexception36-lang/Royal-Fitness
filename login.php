@@ -54,17 +54,20 @@ if (isset($_POST['login'])) {
 
             <form method="POST" action="" class="login-form">
                 <div class="input-group">
-                    <label><i class="fas fa-envelope"></i> Email Address</label>
-                    <input type="email" name="email" placeholder="name@example.com" required>
-                </div>
-                
-                <div class="input-group">
-                    <label><i class="fas fa-lock"></i> Password</label>
-                    <div class="password-field-container">
-                        <input type="password" name="password" id="loginPass" placeholder="••••••••" required>
-                        <i class="fas fa-eye toggle-password" id="toggleIcon" onclick="togglePasswordVisibility('loginPass', 'toggleIcon')"></i>
-                    </div>
-                </div>
+    <label><i class="fas fa-envelope"></i> Email Address</label>
+    <!-- Wrapper added to match password field structure -->
+    <div class="input-field-container"><div class="password-field-container">
+        <input type="email" name="email" placeholder="name@example.com" required>
+    </div>
+</div>
+
+<div class="input-group">
+    <label><i class="fas fa-lock"></i> Password</label>
+    <div class="password-field-container">
+        <input type="password" name="password" id="loginPass" placeholder="••••••••" required>
+        <i class="fas fa-eye toggle-password" id="toggleIcon" onclick="togglePasswordVisibility('loginPass', 'toggleIcon')"></i>
+    </div>
+</div>
 
                 <button type="submit" name="login" class="btn-login">
                     Sign In <i class="fas fa-sign-in-alt"></i>

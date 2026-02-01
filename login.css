@@ -92,3 +92,58 @@ body {
 .back-link { display: block; font-size: 0.8rem !important; opacity: 0.6; margin-top: 10px; color: white !important; text-decoration: none;}
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Shared Container Style for both Email and Password */
+.input-field-container, 
+.password-field-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+/* Standardizing the input boxes */
+.input-field-container input,
+.password-field-container input {
+    width: 100%;
+    padding: 12px 15px; /* Base padding */
+    background: var(--input-bg);
+    border: 1px solid #333;
+    border-radius: 10px;
+    color: white;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    outline: none;
+}
+
+/* Extra right padding ONLY for password to make room for the eye icon */
+.password-field-container input {
+    padding-right: 45px !important;
+}
+
+/* Consistent Focus Effect for both */
+.input-field-container input:focus,
+.password-field-container input:focus {
+    border-color: var(--primary-gold);
+    background: #2a2a2a;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); /* Golden Shine */
+}
+
+/* Eye Icon Position (stays the same) */
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+    color: var(--primary-gold);
+    font-size: 1rem;
+    opacity: 0.6;
+    z-index: 10;
+    transition: var(--transition);
+}
+
+.toggle-password:hover {
+    opacity: 1;
+    text-shadow: 0 0 12px var(--primary-gold);
+    transform: scale(1.1);
+}

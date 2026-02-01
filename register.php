@@ -68,23 +68,23 @@ if (isset($_POST['register'])) {
 
             <form method="POST" action="" class="register-form">
                 <div class="input-group">
-                    <label><i class="fas fa-user"></i> Full Name</label>
+                    <label><i class="fas fa-user"></i> Full Name</label> <div class="password-field-container">
                     <input type="text" name="username" placeholder="e.g. Rahul Sawant" required>
                 </div>
 
                 <div class="form-row">
                     <div class="input-group">
-                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <label><i class="fas fa-envelope"></i> Email</label> <div class="password-field-container">
                         <input type="email" name="email" placeholder="name@email.com" required>
                     </div>
                     <div class="input-group">
-                        <label><i class="fas fa-phone"></i> Mobile</label>
+                        <label><i class="fas fa-phone"></i> Mobile</label> <div class="password-field-container">
                         <input type="text" name="phone" placeholder="10 Digits" maxlength="10" required>
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label><i class="fas fa-id-badge"></i> Role</label>
+                    <label><i class="fas fa-id-badge"></i> Role</label> <div class="password-field-container">
                     <select name="role" class="form-select-custom" required>
                         <option value="user">Gym Member</option>
                         <option value="trainer">Official Trainer</option>
