@@ -1,0 +1,8 @@
+.account-card { padding: 30px; border-radius: 20px; border-left: 10px solid; background: var(--card); }
+.income { border-color: #2ecc71; }
+.expense { border-color: #e63946; }
+.account-card span { color: var(--muted); text-transform: uppercase; font-size: 0.8rem; }
+.account-card h2 { margin-top: 10px; font-weight: 800; }
+.expense-form { background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid #333; }
+.form-control { background: #000; border: 1px solid #333; color: #fff; }
+.form-control:focus { background: #050505; border-color: var(--gold); color: #fff; box-shadow: none; }

@@ -1,0 +1,58 @@
+:root {
+    --primary-gold: #d4af37;
+    --dark-bg: #050505;
+    --card-bg: #111111;
+    --border: #222;
+    --transition: all 0.3s ease;
+}
+
+body { background: var(--dark-bg); color: #fff; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+
+.trainer-container { display: flex; min-height: 100vh; }
+
+/* Sidebar */
+.sidebar { width: 260px; background: #000; border-right: 1px solid var(--border); padding: 30px 20px; position: fixed; height: 100vh; }
+.brand { display: flex; align-items: center; gap: 15px; margin-bottom: 50px; }
+.brand img { width: 35px; }
+.brand span { font-weight: 800; color: var(--primary-gold); letter-spacing: 1px; }
+
+.menu a { display: flex; align-items: center; gap: 15px; padding: 12px 20px; color: #777; text-decoration: none; border-radius: 10px; margin-bottom: 8px; transition: var(--transition); }
+.menu a:hover, .menu a.active { background: var(--primary-gold); color: #000; font-weight: 600; }
+.logout { margin-top: 50px; color: #ff4d4d !important; }
+
+/* Content Area */
+.content { margin-left: 260px; padding: 40px; width: 100%; }
+.text-gold { color: var(--primary-gold); }
+
+.trainer-profile-pill { background: #1a1a1a; padding: 5px 5px 5px 15px; border-radius: 50px; display: flex; align-items: center; gap: 15px; border: 1px solid var(--border); }
+.avatar { width: 35px; height: 35px; background: var(--primary-gold); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+
+/* Gauge Logic */
+.tpi-gauge {
+    width: 180px; height: 180px; border-radius: 50%;
+    margin: 0 auto;
+    background: conic-gradient(var(--tpi-clr) calc(var(--tpi-val) * 1%), #222 0);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+}
+.tpi-gauge .inner {
+    width: 150px; height: 150px; background: var(--card-bg); border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.tpi-gauge .score { font-size: 3rem; font-weight: 800; line-height: 1; }
+.tpi-gauge .label { font-size: 0.7rem; text-transform: uppercase; color: #555; }
+
+/* Metric Bars */
+.metric-row { display: flex; align-items: center; gap: 20px; margin-bottom: 18px; }
+.metric-row span { width: 150px; font-size: 0.85rem; color: #888; }
+.progress-wrap { flex-grow: 1; height: 8px; background: #222; border-radius: 10px; overflow: hidden; }
+.bar { height: 100%; transition: 1s ease-out; }
+.bar.gold { background: var(--primary-gold); box-shadow: 0 0 10px var(--primary-gold); }
+.metric-row .val { width: 30px; color: #fff; font-weight: 700; text-align: right; }
+
+/* Cards */
+.glass-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 30px; height: 100%; transition: var(--transition); }
+.glass-card:hover { border-color: var(--primary-gold); transform: translateY(-5px); }
+
+.suggestion-list { padding-left: 20px; color: #aaa; font-size: 0.9rem; }
+.suggestion-list li { margin-bottom: 10px; }

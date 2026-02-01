@@ -14,157 +14,28 @@ session_start();
     <!-- Bootstrap 5.3.0 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <style>
-        :root {
-            --primary-gold: #d4af37;
-            --dark-bg: #121212;
-            --card-bg: #1e1e1e;
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark-bg);
-            color: #ffffff;
-            line-height: 1.6;
-        }
-
-        /* Navbar (Consistent with Home/About) */
-        .navbar {
-            background: rgba(255, 255, 255, 0.9) !important;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        .navbar-brand { font-weight: 700; color: var(--primary-gold) !important; }
-        .nav-link { color: black !important; margin: 0 10px; transition: var(--transition); }
-        .nav-link:hover { color: var(--primary-gold) !important; }
-        .btn-nav { background: var(--primary-gold); color: black !important; font-weight: 600; border-radius: 20px; padding: 5px 20px; }
-
-        /* Services Header */
-        .services-header {
-            padding: 100px 0 50px;
-            text-align: center;
-            background: linear-gradient(to bottom, #000, var(--dark-bg));
-        }
-        .services-header h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .services-header h1 span { color: var(--primary-gold); }
-        .services-header p { color: #888; max-width: 600px; margin: 0 auto; }
-
-        /* Service Cards */
-        .service-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid #333;
-            transition: var(--transition);
-            height: 100%;
-            position: relative;
-        }
-
-        .service-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--primary-gold);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        }
-
-        .service-img-container {
-            position: relative;
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .service-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .service-card:hover .service-img-container img {
-            transform: scale(1.1);
-        }
-
-        /* Overlay icon or label */
-        .service-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--primary-gold);
-            color: black;
-            padding: 5px 15px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            z-index: 2;
-        }
-
-        .service-content {
-            padding: 30px;
-            text-align: center;
-        }
-
-        .service-content h3 {
-            color: var(--primary-gold);
-            font-weight: 700;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .service-content p {
-            color: #bbb;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-
-        .btn-outline-gold {
-            border: 1px solid var(--primary-gold);
-            color: var(--primary-gold);
-            padding: 8px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-
-        .btn-outline-gold:hover {
-            background: var(--primary-gold);
-            color: black;
-        }
-
-        /* Footer */
-        footer {
-            background: #000;
-            padding: 60px 0 30px;
-            margin-top: 80px;
-            border-top: 1px solid #333;
-        }
-    </style>
+    <!-- External Custom CSS -->
+    <link rel="stylesheet" href="services.css">
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+   <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="home.php">ROYAL FITNESS</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <a class="navbar-brand" href="home.php">
+              <img src="images/Royal_fit_logo.png" alt="Logo" width="40" height="40" onerror="this.style.display='none'">
+                ROYAL FITNESS
+            </a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="services.php">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="membership.php">Membership</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.php">Services</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="membership.php">Membership</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
                     <li class="nav-item ms-lg-3">
                         <?php if(isset($_SESSION['username'])): ?>
-                            <a href="profile2.php" class="btn btn-nav">👋 <?php echo $_SESSION['username']; ?></a>
+                            <a href="profile2.php" class="btn btn-nav">👋 <?php echo htmlspecialchars($_SESSION['username']); ?></a>
                         <?php else: ?>
                             <a href="login.php" class="btn btn-nav">Login</a>
                         <?php endif; ?>

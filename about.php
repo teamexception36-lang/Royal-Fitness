@@ -14,125 +14,17 @@ session_start();
     <!-- Bootstrap 5.3.0 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <style>
-        :root {
-            --primary-gold: #d4af37;
-            --dark-bg: #121212;
-            --card-bg: #1e1e1e;
-            --transition: all 0.3s ease;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark-bg);
-            color: #ffffff;
-            line-height: 1.6;
-        }
-
-        /* Navbar (Matches Home) */
-        .navbar {
-            background: rgba(255, 255, 255, 0.9) !important;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        .navbar-brand { font-weight: 700; color: var(--primary-gold) !important; }
-        .nav-link { color: black !important; margin: 0 10px; }
-        .btn-nav { background: var(--primary-gold); color: black !important; font-weight: 600; border-radius: 20px; padding: 5px 20px; }
-
-        /* About Hero Section */
-        .about-hero {
-            padding: 100px 0 60px;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                        url('https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg');
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-        }
-        .about-hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-        .about-hero h1 span { color: var(--primary-gold); }
-
-        /* Main Content */
-        .content-section { padding: 80px 0; }
-        
-        .about-text-box {
-            padding-right: 30px;
-        }
-        .about-text-box h2 {
-            color: var(--primary-gold);
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-        .about-image img {
-            width: 100%;
-            border-radius: 20px;
-            border: 2px solid var(--primary-gold);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
-        }
-
-        /* Stats/Highlights Cards */
-        .highlight-card {
-            background: var(--card-bg);
-            border: 1px solid #333;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: var(--transition);
-            height: 100%;
-        }
-        .highlight-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-gold);
-        }
-        .highlight-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-        .highlight-card h3 {
-            color: var(--primary-gold);
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: var(--primary-gold);
-            color: black;
-            padding: 50px 0;
-            text-align: center;
-            border-radius: 0;
-            margin-top: 50px;
-        }
-        .btn-dark-custom {
-            background: black;
-            color: white;
-            padding: 12px 35px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 20px;
-        }
-
-        footer {
-            background: #000;
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid #333;
-            color: #888;
-        }
-    </style>
+    <!-- External Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="home.php">ROYAL FITNESS</a>
+            <a class="navbar-brand" href="home.php">
+                <img src="images/Royal_fit_logo.png" alt="Logo" width="40" height="40" onerror="this.style.display='none'">
+                ROYAL FITNESS</a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
@@ -142,7 +34,7 @@ session_start();
                     <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
                     <li class="nav-item ms-lg-3">
                         <?php if(isset($_SESSION['username'])): ?>
-                            <a href="profile2.php" class="btn btn-nav">👋 <?php echo $_SESSION['username']; ?></a>
+                            <a href="profile2.php" class="btn btn-nav">👋 <?php echo htmlspecialchars($_SESSION['username']); ?></a>
                         <?php else: ?>
                             <a href="login.php" class="btn btn-nav">Login</a>
                         <?php endif; ?>

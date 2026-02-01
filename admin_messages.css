@@ -1,0 +1,77 @@
+/* Table Wrapper Card */
+.inquiry-card-wrap {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 25px;
+    border: 1px solid #222;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+/* Sender Info Styling */
+.sender-box .name { color: var(--gold); font-weight: 700; font-size: 1rem; }
+.sender-box .sub { color: #888; font-size: 0.8rem; }
+
+/* Message Text Area */
+.msg-text {
+    max-width: 350px;
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.5;
+    background: rgba(255,255,255,0.02);
+    padding: 10px;
+    border-radius: 10px;
+    border-left: 3px solid #333;
+}
+
+/* Pro Badges */
+.badge-pro {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-pro.member { background: rgba(212, 175, 55, 0.1); color: var(--gold); border: 1px solid var(--gold); }
+.badge-pro.lead { background: rgba(46, 204, 113, 0.1); color: #2ecc71; border: 1px solid #2ecc71; }
+
+/* Mini Insight Boxes in Header */
+.mini-insight {
+    background: var(--card);
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mini-insight .label { font-size: 0.65rem; color: #888; text-transform: uppercase; }
+.mini-insight .val { font-size: 1.2rem; font-weight: 800; }
+
+/* Action Buttons (The Shine Effect) */
+.action-btn {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.action-btn.email { background: #222; color: #fff; border: 1px solid #444; }
+.action-btn.whatsapp { background: #25d366; color: #fff; }
+.action-btn.delete { background: rgba(231, 76, 60, 0.1); color: #e74c3c; border: 1px solid rgba(231, 76, 60, 0.2); }
+
+.action-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    filter: brightness(1.2);
+}
+
+.action-btn.email:hover { background: var(--gold); color: black; border-color: var(--gold); }

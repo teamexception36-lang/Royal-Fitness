@@ -1,0 +1,5 @@
+.table-container { background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid #333; }
+.user-avatar { width: 40px; height: 40px; background: #333; color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 1px solid var(--gold); }
+.plan-tag { background: rgba(212, 175, 55, 0.1); color: var(--gold); padding: 4px 12px; border-radius: 5px; font-size: 0.8rem; font-weight: 600; border: 1px solid rgba(212, 175, 55, 0.3); }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+.status-dot.active { background: #2ecc71; box-shadow: 0 0 10px #2ecc71; }

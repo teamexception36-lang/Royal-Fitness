@@ -1,0 +1,6 @@
+.equip-card { background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid #333; position: relative; transition: var(--transition); }
+.equip-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+.status-indicator { width: 12px; height: 12px; border-radius: 50%; position: absolute; top: 25px; right: 25px; }
+.good { background: #2ecc71; box-shadow: 0 0 10px #2ecc71; }
+.service-required { background: #f1c40f; box-shadow: 0 0 10px #f1c40f; }
+.broken { background: #e63946; box-shadow: 0 0 10px #e63946; }
