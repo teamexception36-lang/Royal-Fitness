@@ -13,6 +13,7 @@ if (isset($_POST['register'])) {
     $confirm_password = $_POST['confirm_password'];
     $role = mysqli_real_escape_string($conn, $_POST['role']);
 
+    // Pro-level Regex Validation
     $pwd_regex = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
     $phone_regex = "/^[0-9]{10}$/";
 
@@ -25,18 +26,46 @@ if (isset($_POST['register'])) {
     } elseif ($password !== $confirm_password) {
         $error = "Passwords do not match!";
     } else {
-        $hashed_password = md5($password); 
-        $check = mysqli_query($conn, "SELECT * FROM users WHERE email='$email' OR phone='$phone'");
-        if (mysqli_num_rows($check) > 0) {
-            $error = "Email or Phone already exists.";
+        // 1. Check if user already exists
+        $check_exists = $conn->prepare("SELECT id FROM users WHERE email=? OR phone=?");
+        $check_exists->bind_param("ss", $email, $phone);
+        $check_exists->execute();
+        $res_exists = $check_exists->get_result();
+
+        if ($res_exists->num_rows > 0) {
+            $error = "Email or Phone already registered.";
         } else {
-            $sql = "INSERT INTO users (username, email, phone, password, role, active_plan, bmi_score) 
-                    VALUES ('$username', '$email', '$phone', '$hashed_password', '$role', 'No Active Plan', 0)";
-            if (mysqli_query($conn, $sql)) {
-                $success = "Registration Successful! Redirecting...";
-                header("refresh:3;url=login.php");
-            } else {
-                $error = "System Error: " . mysqli_error($conn);
+            // 2. Strict Role Capacity Check
+            $can_proceed = true;
+            if ($role === 'owner') {
+                $count_owner = mysqli_query($conn, "SELECT id FROM users WHERE role='owner'");
+                if (mysqli_num_rows($count_owner) >= 1) {
+                    $error = "Access Denied: Royal Fitness only allows 1 Owner account.";
+                    $can_proceed = false;
+                }
+            } elseif ($role === 'manager') {
+                $count_manager = mysqli_query($conn, "SELECT id FROM users WHERE role='manager'");
+                if (mysqli_num_rows($count_manager) >= 2) {
+                    $error = "Access Denied: Royal Fitness already has 2 Managers.";
+                    $can_proceed = false;
+                }
+            }
+
+            if ($can_proceed) {
+                // 3. Pro-Level Password Hashing
+                $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+                
+                $sql = "INSERT INTO users (username, email, phone, password, role, active_plan, bmi_score) 
+                        VALUES (?, ?, ?, ?, ?, 'No Active Plan', 0)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("sssss", $username, $email, $phone, $hashed_password, $role);
+                
+                if ($stmt->execute()) {
+                    $success = "Registration Successful! Redirecting to Login...";
+                    header("refresh:3;url=login.php");
+                } else {
+                    $error = "System Error: Registration failed.";
+                }
             }
         }
     }
@@ -54,7 +83,6 @@ if (isset($_POST['register'])) {
     <link rel="stylesheet" href="register.css">
 </head>
 <body>
-
     <div class="register-container">
         <div class="register-card">
             <div class="brand-header">
@@ -68,29 +96,37 @@ if (isset($_POST['register'])) {
 
             <form method="POST" action="" class="register-form">
                 <div class="input-group">
-                    <label><i class="fas fa-user"></i> Full Name</label> <div class="password-field-container">
-                    <input type="text" name="username" placeholder="e.g. Rahul Sawant" required>
+                    <label><i class="fas fa-user"></i> Full Name</label>
+                    <div class="password-field-container">
+                        <input type="text" name="username" placeholder="e.g. Rahul Sawant" required>
+                    </div>
                 </div>
 
                 <div class="form-row">
                     <div class="input-group">
-                        <label><i class="fas fa-envelope"></i> Email</label> <div class="password-field-container">
-                        <input type="email" name="email" placeholder="name@email.com" required>
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <div class="password-field-container">
+                            <input type="email" name="email" placeholder="name@email.com" required>
+                        </div>
                     </div>
                     <div class="input-group">
-                        <label><i class="fas fa-phone"></i> Mobile</label> <div class="password-field-container">
-                        <input type="text" name="phone" placeholder="10 Digits" maxlength="10" required>
+                        <label><i class="fas fa-phone"></i> Mobile</label>
+                        <div class="password-field-container">
+                            <input type="text" name="phone" placeholder="10 Digits" maxlength="10" required>
+                        </div>
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label><i class="fas fa-id-badge"></i> Role</label> <div class="password-field-container">
-                    <select name="role" class="form-select-custom" required>
-                        <option value="user">Gym Member</option>
-                        <option value="trainer">Official Trainer</option>
-                        <option value="manager">Gym Manager</option>
-                        <option value="owner">Gym Owner</option>
-                    </select>
+                    <label><i class="fas fa-id-badge"></i> Access Role</label>
+                    <div class="password-field-container">
+                        <select name="role" class="form-select-custom" required>
+                            <option value="user">Gym Member</option>
+                            <option value="trainer">Official Trainer</option>
+                            <option value="manager">Gym Manager (Max 2)</option>
+                            <option value="owner">Gym Owner (Max 1)</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-row">
@@ -110,7 +146,7 @@ if (isset($_POST['register'])) {
                     </div>
                 </div>
 
-                <button type="submit" name="register" class="btn-royal">Register Now</button>
+                <button type="submit" name="register" class="btn-royal">Create Account</button>
             </form>
             <div class="card-footer">
                 <p>Already registered? <a href="login.php">Login</a></p>
@@ -122,7 +158,6 @@ if (isset($_POST['register'])) {
     function togglePasswordVisibility(inputId, iconId) {
         const passwordInput = document.getElementById(inputId);
         const toggleIcon = document.getElementById(iconId);
-        
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
             toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
