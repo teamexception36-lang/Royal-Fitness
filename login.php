@@ -89,7 +89,7 @@ if (isset($_POST['login'])) {
 
             <div class="login-footer">
                 <p>Don't have an account? <a href="register.php">Join the family</a></p>
-                <a href="home.php" class="back-link">← Return to Website</a>
+                <a href="index.php" class="back-link">← Return to Website</a>
             </div>
         </div>
     </div>

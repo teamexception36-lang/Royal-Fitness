@@ -69,7 +69,7 @@ $member_id = "RF-" . str_pad($user['id'], 4, '0', STR_PAD_LEFT);
                     <i>🏋️</i> <span>Workout Plans</span>
                 </a>
                 <hr class="nav-divider">
-                <a href="home.php" class="nav-item">
+                <a href="index.php" class="nav-item">
                     <i>🌐</i> <span>Visit Site</span>
                 </a>
                 <a href="logout.php" class="nav-item logout">
