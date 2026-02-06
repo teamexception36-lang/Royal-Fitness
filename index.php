@@ -131,7 +131,7 @@ $journeyText = $isLoggedIn ? 'Explore Services' : 'Start Journey';
             <h2 class="section-title">THE <span>ROYAL</span> ARENA</h2>
             <div class="row g-3 mt-4">
                 <div class="col-md-4"><div class="gallery-item"><img src="https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg" alt="Gym"></div></div>
-                <div class="col-md-4"><div class="gallery-item"><img src="https://images.pexels.com/photos/2261145/pexels-photo-2261145.jpeg" alt="Gym"></div></div>
+                <div class="col-md-4"><div class="gallery-item"><img src="images\pexelsgym.jpg" alt="Gym"></div></div>
                 <div class="col-md-4"><div class="gallery-item"><img src="https://images.pexels.com/photos/3838389/pexels-photo-3838389.jpeg" alt="Gym"></div></div>
                 <div class="col-md-8"><div class="gallery-item"><img src="https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg" alt="Gym"></div></div>
                 <div class="col-md-4"><div class="gallery-item"><img src="https://images.pexels.com/photos/4162485/pexels-photo-4162485.jpeg" alt="Gym"></div></div>
