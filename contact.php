@@ -61,7 +61,7 @@ session_start();
         <header class="contact-header">
             <h6 class="text-gold text-uppercase ls-2">Connect with the Elite</h6>
             <h1>Get In <span>Touch</span></h1>
-            <p class="text-muted mx-auto" style="max-width: 600px;">Have questions about our training programs or memberships? Our team is ready to help you start your transformation.</p>
+            <p class=" mx-auto" style="max-width: 600px;">Have questions about our training programs or memberships? Our team is ready to help you start your transformation.</p>
         </header>
 
         <!-- Main Contact Card -->
@@ -106,7 +106,7 @@ session_start();
 
                         <!-- Added Social Media for Pro-Level Engagement -->
                         <div class="social-links mt-5">
-                            <p class="small text-muted text-uppercase mb-3">Follow our progress</p>
+                            <p class="small text-secondary text-uppercase mb-3">Follow our progress</p>
                             <a href="#"><i class="fab fa-instagram"></i></a>
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
                             <a href="#"><i class="fab fa-youtube"></i></a>
@@ -121,20 +121,20 @@ session_start();
                         <form action="contact_process.php" method="POST">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label small text-muted">Full Name</label>
+                                    <label class="form-label small">Full Name</label>
                                     <input type="text" name="name" class="form-control" placeholder="John Doe" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label small text-muted">Email Address</label>
+                                    <label class="form-label small ">Email Address</label>
                                     <input type="email" name="email" class="form-control" placeholder="john@example.com" required>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label small text-muted">Phone Number</label>
+                                <label class="form-label small ">Phone Number</label>
                                 <input type="tel" name="phone" class="form-control" placeholder="+91 00000 00000" required>
                             </div>
                             <div class="mb-4">
-                                <label class="form-label small text-muted">How can we help?</label>
+                                <label class="form-label small ">How can we help?</label>
                                 <textarea name="message" class="form-control" rows="4" placeholder="I'm interested in the 12-month membership..." required></textarea>
                             </div>
                             <button type="submit" class="btn-royal-contact">Send Message <i class="fas fa-paper-plane ms-2"></i></button>
